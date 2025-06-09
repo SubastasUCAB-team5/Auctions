@@ -68,5 +68,26 @@ namespace AuctionMS.Controllers
                 return StatusCode(500, "Error while deleting auction.");
             }
         }
+
+        [HttpPut("change-state")]
+        public async Task<IActionResult> ChangeState(ChangeAuctionStateDto dto)
+        {
+            try
+            {
+                var command = new ChangeAuctionStateCommand(dto);
+                var result = await _mediator.Send(command);
+                return Ok(new { Message = result });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { Error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Error = "Ocurrió un error interno al procesar la solicitud" });
+            }
+        }
     }
 }
+
+
