@@ -11,5 +11,7 @@ namespace AuctionMS.Core.Service
     {
         Task PublishAuctionCreatedAsync(Auction auction);
         Task PublishAuctionUpdatedAsync(Auction auction);
+        Task PublishAuctionDeletedAsync(Auction auction);
+
     }
 }

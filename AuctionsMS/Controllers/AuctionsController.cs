@@ -52,5 +52,21 @@ namespace AuctionMS.Controllers
                 return StatusCode(500, "Error while updating auction.");
             }
         }
+
+        [HttpDelete("delete-{id}")]
+        public async Task<IActionResult> DeleteAuctionById(Guid id)
+        {
+            try
+            {
+                var command = new DeleteAuctionCommand(new DeleteAuctionDto { AuctionId = id });
+                var message = await _mediator.Send(command);
+                return Ok(message);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Error deleting auction: {Message}", e.Message);
+                return StatusCode(500, "Error while deleting auction.");
+            }
+        }
     }
 }

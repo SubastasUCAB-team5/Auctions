@@ -41,6 +41,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateAuctionCommandHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateAuctionCommandHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DeleteAuctionCommandHandler).Assembly));
 
 builder.Services.AddScoped<IEventPublisher, EventPublisher>();
 builder.Services.AddTransient<IAuctionsDbContext, AuctionsDbContext>();
@@ -63,6 +64,7 @@ builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<AuctionCreatedConsumer>();
     x.AddConsumer<AuctionUpdatedConsumer>();
+    x.AddConsumer<AuctionDeletedConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -80,6 +82,11 @@ builder.Services.AddMassTransit(x =>
         {
             e.ConfigureConsumer<AuctionUpdatedConsumer>(context);
         });
+
+        cfg.ReceiveEndpoint("auction-deleted-queue", e =>
+        {
+            e.ConfigureConsumer<AuctionDeletedConsumer>(context);
+        });
     });
 });
 
@@ -93,6 +100,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication(); 

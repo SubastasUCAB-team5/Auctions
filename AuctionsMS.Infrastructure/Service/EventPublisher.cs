@@ -63,6 +63,28 @@ namespace AuctionMS.Infrastructure.Service
 
             await _publishEndpoint.Publish(@event);
         }
+
+        public async Task PublishAuctionDeletedAsync(Auction auction)
+        {
+            var @event = new AuctionDeletedEvent
+            {
+                Id = auction.Id,
+                Name = auction.Name,
+                Description = auction.Description,
+                BasePrice = auction.BasePrice,
+                StartTime = auction.StartTime,
+                EndTime = auction.EndTime,
+                MinimumIncrement = auction.MinimumIncrement,
+                ReservePrice = auction.ReservePrice,
+                AuctionType = auction.AuctionType,
+                Images = auction.Images,
+                State = auction.State,
+                Products = auction.Products,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await _publishEndpoint.Publish(@event);
+        }
     }
 }
 

@@ -11,7 +11,7 @@ namespace AuctionMS.Core.Repositories
     {
         Task AddAsync(Auction user);
         Task UpdateAsync(Auction user);
-
+        Task DeleteAsync(Guid userId);
         Task<Auction?> GetByIdAsync(Guid userId);
         Task<List<Auction>> GetAllAsync();
     }
