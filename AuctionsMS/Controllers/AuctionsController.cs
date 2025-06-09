@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using AuctionMS.Commons.Dtos.Request;
 using AuctionMS.Application.Commands;
+using AuctionMS.Application.Queries;
 using Microsoft.AspNetCore.Authorization;
 
 namespace AuctionMS.Controllers
@@ -85,6 +86,38 @@ namespace AuctionMS.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { Error = "Ocurrió un error interno al procesar la solicitud" });
+            }
+        }
+
+        [HttpGet("get-{id}")]
+        public async Task<IActionResult> GetAuction(Guid id)
+        {
+            try
+            {
+                var query = new GetAuctionQuery(id);
+                var auction = await _mediator.Send(query);
+                return Ok(auction);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error getting auction: {Message}", e.Message);
+                return StatusCode(500, "Error while getting auction.");
+            }
+        }
+
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAllAuctions()
+        {
+            try
+            {
+                var query = new GetAllAuctionsQuery();
+                var auctions = await _mediator.Send(query);
+                return Ok(auctions);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error getting auctions: {Message}", e.Message);
+                return StatusCode(500, "Error while getting auctions.");
             }
         }
     }
