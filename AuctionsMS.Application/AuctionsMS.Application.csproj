@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuctionsMS.Commons\AuctionsMS.Commons.csproj" />
+    <ProjectReference Include="..\AuctionsMS.Core\AuctionsMS.Core.csproj" />
+    <ProjectReference Include="..\AuctionsMS.Domain\AuctionsMS.Domain.csproj" />
+    <ProjectReference Include="..\AuctionsMS.Infrastructure\AuctionsMS.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -7,7 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.4.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.12.0" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.24" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuctionsMS.Application\AuctionsMS.Application.csproj" />
+    <ProjectReference Include="..\AuctionsMS.Commons\AuctionsMS.Commons.csproj" />
+    <ProjectReference Include="..\AuctionsMS.Core\AuctionsMS.Core.csproj" />
+    <ProjectReference Include="..\AuctionsMS.Infrastructure\AuctionsMS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
