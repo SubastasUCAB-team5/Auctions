@@ -10,6 +10,6 @@ namespace AuctionMS.Core.Service
     public interface IEventPublisher
     {
         Task PublishAuctionCreatedAsync(Auction auction);
-
+        Task PublishAuctionUpdatedAsync(Auction auction);
     }
 }
