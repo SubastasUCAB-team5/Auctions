@@ -34,9 +34,31 @@ namespace AuctionMS.Infrastructure.Service
                 BasePrice = auction.BasePrice,
                 Images = auction.Images,
                 State = auction.State,
-                Products = auction.Products,    
+                Products = auction.Products,
                 CreatedAt = DateTime.UtcNow
 
+            };
+
+            await _publishEndpoint.Publish(@event);
+        }
+
+        public async Task PublishAuctionUpdatedAsync(Auction auction)
+        {
+            var @event = new AuctionUpdatedEvent
+            {
+                Id = auction.Id,
+                Name = auction.Name,
+                Description = auction.Description,
+                BasePrice = auction.BasePrice,
+                StartTime = auction.StartTime,
+                EndTime = auction.EndTime,
+                MinimumIncrement = auction.MinimumIncrement,
+                ReservePrice = auction.ReservePrice,
+                AuctionType = auction.AuctionType,
+                Images = auction.Images,
+                State = auction.State,
+                Products = auction.Products,
+                CreatedAt = DateTime.UtcNow
             };
 
             await _publishEndpoint.Publish(@event);

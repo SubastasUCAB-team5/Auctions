@@ -3,7 +3,7 @@ using AuctionMS.Domain.Entities;
 using AuctionMS.Infrastructure.DataBase;
 using AuctionMS.Commons.Events;
 
-namespace ProductMS.Infrastructure.Messaging.Consumers;
+namespace AuctionMS.Infrastructure.Messaging.Consumers;
 
 public class AuctionCreatedConsumer : IConsumer<AuctionCreatedEvent>
 {

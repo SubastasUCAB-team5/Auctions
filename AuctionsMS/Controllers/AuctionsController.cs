@@ -36,5 +36,21 @@ namespace AuctionMS.Controllers
                 return StatusCode(500, "Error while creating auction.");
             }
         }
+
+        [HttpPut("update-auction")]
+        public async Task<IActionResult> UpdateAuction(UpdateAuctionDto updateAuctionDto)
+        {
+            try
+            {
+                var command = new UpdateAuctionCommand(updateAuctionDto);
+                var msg = await _mediator.Send(command);
+                return Ok(msg);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Error updating auction: {Message}", e.Message);
+                return StatusCode(500, "Error while updating auction.");
+            }
+        }
     }
 }

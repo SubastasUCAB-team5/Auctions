@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims;
 using AuctionMS.Application.Handlers.Commands;
+using AuctionMS.Application.Handlers.Queries;
 using AuctionMS.Core.DataBase;
 using AuctionMS.Core.Repositories;
 using AuctionMS.Core.Service;
@@ -15,7 +16,7 @@ using System.Configuration;
 using MassTransit;
 using AuctionMS.Infrastructure.Service;
 using Microsoft.Extensions.DependencyInjection;
-using ProductMS.Infrastructure.Messaging.Consumers;
+using AuctionMS.Infrastructure.Messaging.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddHttpClient();
 
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateAuctionCommandHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateAuctionCommandHandler).Assembly));
 
 builder.Services.AddScoped<IEventPublisher, EventPublisher>();
 builder.Services.AddTransient<IAuctionsDbContext, AuctionsDbContext>();
@@ -60,6 +62,7 @@ builder.Services.AddSingleton<MongoDbContext>();
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<AuctionCreatedConsumer>();
+    x.AddConsumer<AuctionUpdatedConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -71,6 +74,11 @@ builder.Services.AddMassTransit(x =>
         cfg.ReceiveEndpoint("auction-created-queue", e =>
         {
             e.ConfigureConsumer<AuctionCreatedConsumer>(context);
+        });
+        
+        cfg.ReceiveEndpoint("auction-updated-queue", e =>
+        {
+            e.ConfigureConsumer<AuctionUpdatedConsumer>(context);
         });
     });
 });

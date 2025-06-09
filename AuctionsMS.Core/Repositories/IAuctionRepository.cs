@@ -10,5 +10,9 @@ namespace AuctionMS.Core.Repositories
     public interface IAuctionRepository
     {
         Task AddAsync(Auction user);
+        Task UpdateAsync(Auction user);
+
+        Task<Auction?> GetByIdAsync(Guid userId);
+        Task<List<Auction>> GetAllAsync();
     }
 }
