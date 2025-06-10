@@ -36,6 +36,7 @@ namespace AuctionMS.Application.Handlers.Commands
                 dto.ReservePrice,
                 dto.AuctionType,
                 dto.Products,
+                dto.UserId,
                 dto.State
             )
             {

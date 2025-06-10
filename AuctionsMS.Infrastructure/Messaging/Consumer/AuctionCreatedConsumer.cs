@@ -32,7 +32,8 @@ public class AuctionCreatedConsumer : IConsumer<AuctionCreatedEvent>
             AuctionType = message.AuctionType,
             Products = message.Products,
             State = message.State,
-            CreatedAt = message.CreatedAt
+            CreatedAt = message.CreatedAt,
+            UserId = message.UserId
         };
 
         await _mongo.Auctions.InsertOneAsync(user);

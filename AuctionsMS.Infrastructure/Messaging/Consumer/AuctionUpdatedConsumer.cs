@@ -32,7 +32,8 @@ public class AuctionUpdatedConsumer : IConsumer<AuctionUpdatedEvent>
             .Set(u => u.AuctionType, message.AuctionType)
             .Set(u => u.Products, message.Products)
             .Set(u => u.State, message.State)
-            .Set(u => u.CreatedAt, message.CreatedAt);
+            .Set(u => u.CreatedAt, message.CreatedAt)
+            .Set(u => u.UserId, message.UserId);
 
 
         await _mongo.Auctions.UpdateOneAsync(filter, update);
