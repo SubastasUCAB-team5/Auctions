@@ -35,8 +35,8 @@ namespace AuctionMS.Infrastructure.Service
                 Images = auction.Images,
                 State = auction.State,
                 Products = auction.Products,
-                CreatedAt = DateTime.UtcNow
-
+                CreatedAt = DateTime.UtcNow,
+                UserId = auction.UserId
             };
 
             await _publishEndpoint.Publish(@event);
@@ -58,7 +58,8 @@ namespace AuctionMS.Infrastructure.Service
                 Images = auction.Images,
                 State = auction.State,
                 Products = auction.Products,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                UserId = auction.UserId
             };
 
             await _publishEndpoint.Publish(@event);
@@ -80,7 +81,8 @@ namespace AuctionMS.Infrastructure.Service
                 Images = auction.Images,
                 State = auction.State,
                 Products = auction.Products,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                UserId = auction.UserId
             };
 
             await _publishEndpoint.Publish(@event);

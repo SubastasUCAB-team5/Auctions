@@ -40,7 +40,8 @@ namespace AuctionMS.Application.Handlers.Queries
                 CreatedAt = auction.CreatedAt,
                 CreatedBy = "system",
                 State = auction.State,
-                Products = auction.Products
+                Products = auction.Products,
+                UserId = auction.UserId
             }).ToList();
         }
     }

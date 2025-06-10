@@ -8,6 +8,8 @@ public class AuctionReadModel
     [BsonId]
     [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }
+    [BsonRepresentation(BsonType.String)]
+    public Guid UserId { get; set; }
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;
     public List<string> Images { get; set; } = new List<string>();
@@ -18,7 +20,8 @@ public class AuctionReadModel
     public string ReservePrice { get; set; }
     public string AuctionType { get; set; } = default!;
     public AuctionState State { get; set; }
-    public List<string> Products { get; set; } = new List<string>();
+    [BsonRepresentation(BsonType.String)]
+    public List<Guid> Products { get; set; } = new List<Guid>();
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
