@@ -32,9 +32,9 @@ namespace AuctionMS.Application.Handlers.Commands
             if (!string.IsNullOrEmpty(request.UpdateAuctionDto.MinimumIncrement)) auction.MinimumIncrement = request.UpdateAuctionDto.MinimumIncrement;
             if (!string.IsNullOrEmpty(request.UpdateAuctionDto.ReservePrice)) auction.ReservePrice = request.UpdateAuctionDto.ReservePrice;
             if (!string.IsNullOrEmpty(request.UpdateAuctionDto.AuctionType)) auction.AuctionType = request.UpdateAuctionDto.AuctionType;
-            if (request.UpdateAuctionDto.Products?.Count > 0) auction.Products = request.UpdateAuctionDto.Products;
             auction.UserId = request.UpdateAuctionDto.UserId;
-
+            auction.Products = request.UpdateAuctionDto.Products;
+            
             await _auctionRepository.UpdateAsync(auction);
             await _eventPublisher.PublishAuctionUpdatedAsync(auction);
             return "Auction updated successfully.";

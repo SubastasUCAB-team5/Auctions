@@ -20,7 +20,7 @@ namespace AuctionMS.Commons.Dtos.Request
         public string ReservePrice { get; set; }
         public string AuctionType { get; set; } = default!;
         public AuctionState State { get; set; } = AuctionState.Active;
-        public List<Guid> Products { get; set; } = new List<Guid>();
+        public List<string> Products { get; set; } = new List<string>();
         public Guid UserId { get; set; }
     }
 }

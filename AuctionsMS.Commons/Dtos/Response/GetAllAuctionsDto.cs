@@ -21,7 +21,7 @@ namespace AuctionMS.Commons.Dtos.Response
         public string ReservePrice { get; set; }
         public string AuctionType { get; set; } = default!;
         public AuctionState State { get; set; }
-        public List<Guid> Products { get; set; } = new List<Guid>();
+        public List<string> Products { get; set; } = new List<string>();
         public DateTime CreatedAt { get; set; }
         public string? CreatedBy { get; set; }
         public Guid UserId { get; set; }

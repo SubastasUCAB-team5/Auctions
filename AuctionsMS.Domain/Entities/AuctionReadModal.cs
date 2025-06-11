@@ -20,8 +20,7 @@ public class AuctionReadModel
     public string ReservePrice { get; set; }
     public string AuctionType { get; set; } = default!;
     public AuctionState State { get; set; }
-    [BsonRepresentation(BsonType.String)]
-    public List<Guid> Products { get; set; } = new List<Guid>();
+    public List<string> Products { get; set; } = new List<string>();
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
