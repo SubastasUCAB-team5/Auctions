@@ -30,12 +30,12 @@ namespace AuctionMS.Domain.Entities
         public string ReservePrice { get; set; }
         public string AuctionType { get; set; } = default!;
         public AuctionState State { get; set; }
-        public List<Guid> Products { get; set; } = new List<Guid>();
+        public List<string> Products { get; set; } = new List<string>();
         public Guid UserId { get; set; }
 
         public Auction() { }
 
-        public Auction(string name, string description, List<string> images, string basePrice, DateTime startTime, DateTime endTime, string minimumIncrement, string reservePrice, string auctionType, List<Guid> products, Guid userId, AuctionState state = AuctionState.Active)
+        public Auction(string name, string description, List<string> images, string basePrice, DateTime startTime, DateTime endTime, string minimumIncrement, string reservePrice, string auctionType, List<string> products, Guid userId, AuctionState state = AuctionState.Active)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -48,12 +48,12 @@ namespace AuctionMS.Domain.Entities
             ReservePrice = reservePrice;
             AuctionType = auctionType;
             State = state;
-            Products = products ?? new List<Guid>();
+            Products = products ?? new List<string>();
             CreatedAt = DateTime.UtcNow;
             UserId = userId;
         }
 
-        public void Update(string name, string description, string basePrice, string minimumIncrement, string reservePrice, string auctionType, List<string> images, List<Guid> products, Guid userId)
+        public void Update(string name, string description, string basePrice, string minimumIncrement, string reservePrice, string auctionType, List<string> images, List<string> products, Guid userId)
         {
             if (AuctionStateTransitions.IsImmutable(State))
             {
@@ -66,7 +66,7 @@ namespace AuctionMS.Domain.Entities
             MinimumIncrement = minimumIncrement;
             ReservePrice = reservePrice;
             AuctionType = auctionType;
-            Products = products ?? new List<Guid>();
+            Products = products ?? new List<string>();
             UserId = userId;
             
             if (images != null && images.Any())

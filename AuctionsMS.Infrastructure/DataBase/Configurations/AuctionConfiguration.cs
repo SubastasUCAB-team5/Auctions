@@ -25,7 +25,10 @@ namespace AuctionMS.Infrastructure.DataBase.Configuration
             builder.Property(s => s.AuctionType).IsRequired();
             builder.Property(s => s.CreatedAt).IsRequired();
             builder.Property(s => s.UpdatedAt).IsRequired();
+            builder.Property(s => s.Products).IsRequired();
+            builder.Property(s => s.UserId).IsRequired();
         }
     }
 
 }
+
