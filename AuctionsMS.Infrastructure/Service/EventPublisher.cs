@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MassTransit;
 using AuctionMS.Domain.Entities;
 using AuctionMS.Commons.Events;
+using Contracts.Events;
 using AuctionMS.Core.Service;
 
 namespace AuctionMS.Infrastructure.Service
@@ -87,6 +88,17 @@ namespace AuctionMS.Infrastructure.Service
 
             await _publishEndpoint.Publish(@event);
         }
+
+        public async Task PublishAuctionProductsAsync(Guid auctionId, List<string> products)
+        {
+            var @event = new AuctionProductsEvent
+            {
+                AuctionId = auctionId,
+                Products = products,
+                Timestamp = DateTime.UtcNow,
+            };
+
+            await _publishEndpoint.Publish(@event);
+        }
     }
 }
-
