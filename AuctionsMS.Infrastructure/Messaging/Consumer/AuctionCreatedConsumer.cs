@@ -17,7 +17,6 @@ public class AuctionCreatedConsumer : IConsumer<AuctionCreatedEvent>
     public async Task Consume(ConsumeContext<AuctionCreatedEvent> context)
     {
         var message = context.Message;
-
         var user = new AuctionReadModel
         {
             Id = message.Id,

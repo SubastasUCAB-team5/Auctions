@@ -46,6 +46,9 @@ namespace AuctionMS.Application.Handlers.Commands
             await _auctionRepository.AddAsync(auction);
             await _eventPublisher.PublishAuctionCreatedAsync(auction);
 
+            var products = dto.Products;
+            await _eventPublisher.PublishAuctionProductsAsync(auction.Id, products);
+
             return "Auction successfully created.";
         }
     }

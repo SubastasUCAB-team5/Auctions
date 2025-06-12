@@ -44,7 +44,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Updat
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DeleteAuctionCommandHandler).Assembly));
 
 builder.Services.AddScoped<IEventPublisher, EventPublisher>();
-builder.Services.AddTransient<IAuctionsDbContext, AuctionsDbContext>();
+builder.Services.AddScoped<IAuctionsDbContext, AuctionsDbContext>();
 builder.Services.AddTransient<IAuctionRepository, AuctionRepository>();
 builder.Services.AddTransient<IAuctionsDbContext, AuctionsDbContext>();
 
@@ -107,4 +107,3 @@ app.UseAuthentication();
 app.UseAuthorization();  
 app.MapControllers();
 app.Run();
-
